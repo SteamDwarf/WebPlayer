@@ -1,15 +1,18 @@
 import React, { FC } from 'react'
+import Input from './Input'
+import './LabeledInput.css';
 
 interface ILabeledInputProps {
     label: string,
-    placeholder: string
+    placeholder: string,
+    inputType?: string
 }
 
-const LabeledInput:FC<ILabeledInputProps> = ({label, placeholder}) => {
+const LabeledInput:FC<ILabeledInputProps> = ({label, placeholder, inputType}) => {
   return (
-    <div>
+    <div className='block'>
         <label>{label}</label>
-        <input placeholder={placeholder}></input>
+        <Input placeholder={placeholder} type={inputType}/>
     </div>
   )
 }

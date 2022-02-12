@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
+import './Input.css';
 
-const Input = () => {
+interface IInputProps {
+  placeholder: string,
+  type?: string
+}
+
+const Input:FC<IInputProps> = ({placeholder, type}) => {
   return (
-    <input>Input</input>
+    <input className='input' placeholder={placeholder} type={type}/>
   )
 }
 

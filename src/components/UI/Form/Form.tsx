@@ -10,7 +10,9 @@ const Form:FC<IFormProps> = ({title, children}) => {
   return (
     <form className='form'>
         <h1 className='form-title'>{title}</h1>
-        {children}
+        <div className='form-interactive'>
+          {children}
+        </div>
     </form>
   )
 }
