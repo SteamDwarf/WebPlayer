@@ -1,4 +1,5 @@
 export interface IUserState {
     id: number,
-    username: string
+    username: string,
+    isAuth: string | null
 }

@@ -1,0 +1,6 @@
+@import './vars.scss';
+
+@mixin hoverButton {
+    background-color: $green;
+    color: $textColor;
+}

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/Header.css'
-import './styles/Link.css';
+import './styles/Header.scss'
+import './styles/Link.scss';
 import Accordion from './UI/Accordion/Accordion';
-import Button from './UI/Button/Button';
 
 const Header = () => {
   return (

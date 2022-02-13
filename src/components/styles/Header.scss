@@ -1,11 +1,13 @@
+@import '../../sass/vars.scss';
+
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 70px;
     padding: 0px 20px;
-    border-bottom: 3px solid #56BE5F;
-    background-color: #444444;
+    border-bottom: 3px solid $green;
+    background-color: $mainColor;
 }
 .links_block {
     display: flex;

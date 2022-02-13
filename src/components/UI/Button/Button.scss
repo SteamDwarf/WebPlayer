@@ -1,16 +1,19 @@
+@import '../../../sass/vars.scss';
+@import '../../../sass/mixins.scss';
+
 .button {
     width: 100px;
     height: 50px;
-    color: #42C84D;
-    background-color: #616161;
+    color: $green;
+    background-color: $itemsColor;
     /* border: 1px solid #42C84D; */
     border: none;
     border-radius: 5px;
     outline: none;
     cursor: pointer;
     transition: 0.3s;
-}
-.button:hover {
-    background-color: #42C84D;
-    color: white;
+
+    &:hover {
+        @include hoverButton;
+    }
 }

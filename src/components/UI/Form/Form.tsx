@@ -1,5 +1,5 @@
 import React, { FC, ReactChild, ReactNode } from 'react'
-import './Form.css';
+import './Form.scss';
 
 interface IFormProps {
   title: string,
