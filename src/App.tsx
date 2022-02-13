@@ -6,11 +6,12 @@ import './App.scss';
 import { useDispatch} from 'react-redux';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { setAuthStateAction } from './store/actions/UserActions';
+import AppRoute from './components/AppRoute';
+import Header from './components/Header';
 
 function App() {
   const dispatch = useDispatch();
   const user = useTypedSelector(state => state.user);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setAuthState();
@@ -20,19 +21,12 @@ function App() {
     let isAuth = localStorage.getItem('isAuth');
     dispatch(setAuthStateAction(isAuth));
 
-/*     if(isAuth === 'true') {
-      navigate('/');
-    } else {
-      navigate('/login');
-    } */
   };
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/login' element={<Login />} />
-      </Routes>
+      <Header />
+      <AppRoute />
     </BrowserRouter>
   );
 }

@@ -27,7 +27,6 @@ const Login = () => {
 
   return (
     <div>
-        <Header />
         <div className='login_block'>
           <Form title='Войти'>
             <LabeledInput 
