@@ -2,23 +2,27 @@ import React, { FC } from 'react'
 import Input from './Input'
 import './LabeledInput.scss';
 
+interface OptionalProps {
+  inputType?: string;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+}
 interface ILabeledInputProps {
     label: string;
     placeholder: string;
-    inputType?: string;
     value: string;
     onChange: (value: string) => void;
+    optional?: OptionalProps
 }
 
-const LabeledInput:FC<ILabeledInputProps> = ({label, placeholder, inputType, value, onChange}) => {
+const LabeledInput:FC<ILabeledInputProps> = ({label, placeholder, value, onChange, optional}) => {
   return (
     <div className='block'>
         <label>{label}</label>
         <Input 
           placeholder={placeholder} 
-          type={inputType}
           value={value}
           onChange={onChange}
+          optional={{type: optional?.inputType}}
         />
     </div>
   )

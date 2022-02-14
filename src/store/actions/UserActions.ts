@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { useActions } from "../../hooks/useActions";
 import { UserActionTypes } from "../../types/enums";
 import { ISignInData, ISignUpData } from "../../types/interfaces";
 import { IUserActions } from "../../types/userActions";
@@ -44,3 +45,21 @@ export const signUpUser = (newUser: ISignUpData) => {
 export const logOutUser = (): IUserActions => ({
     type: UserActionTypes.LOG_OUT
 });
+
+const fetchUsersSuccessAction = (users: ISignUpData[]) : IUserActions => ({
+    type: UserActionTypes.FETCH_USERS_SUCCESS,
+    payload: users
+});
+const fetchUsersErrorAction = (error: string): IUserActions => ({
+    type: UserActionTypes.FETCH_USERS_ERROR,
+    payload: error
+});
+
+export const fetchUsers = () => {
+    return (dispatch: Dispatch<IUserActions>) => {
+        fetch('http://localhost:3004/users')
+            .then(response => response.ok ? response.json : Promise.reject(response))
+            .then(json => console.log(json.name) /* dispatch(fetchUsersSuccessAction(json)) */)
+            .catch(e => dispatch(fetchUsersErrorAction(e.statusText)));
+    }
+}

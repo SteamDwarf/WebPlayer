@@ -13,10 +13,7 @@ interface ISignInUser {
     type: UserActionTypes.SIGN_IN_USER,
     payload: ISignInData
 }
-interface ISignUpUser {
-    type: UserActionTypes.SIGN_UP_USER,
-    payload: ISignUpUser
-}
+
 interface ISignUpSuccess {
     type: UserActionTypes.SIGN_UP_SUCCESS,
     payload: ISignUpData
@@ -28,11 +25,20 @@ interface ISignUpError {
 interface ILogOut {
     type: UserActionTypes.LOG_OUT
 }
+interface IFetchUsersSuccess {
+    type: UserActionTypes.FETCH_USERS_SUCCESS,
+    payload: ISignUpData[]
+}
+interface IFetchUsersError {
+    type: UserActionTypes.FETCH_USERS_ERROR,
+    payload: string
+}
 
 export type IUserActions = ISetUsername | 
                             ISetAuthState | 
                             ISignInUser | 
-                            ISignUpUser |
                             ISignUpSuccess |
                             ISignUpError |
-                            ILogOut;
+                            ILogOut |
+                            IFetchUsersSuccess | 
+                            IFetchUsersError;

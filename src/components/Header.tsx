@@ -6,6 +6,7 @@ import './styles/Header.scss'
 import './styles/Link.scss';
 import Accordion from './UI/Accordion/Accordion';
 import Button from './UI/Button/Button';
+import logo from '../assets/icons/moremusic.png';
 
 const Header = () => {
   const user = useTypedSelector(state => state.user);
@@ -20,6 +21,7 @@ const Header = () => {
   return (
     <div className='header'>
         <div className='links_block'>
+            <img src={logo} width='60px' height='60px'/>
             {user.isAuth === 'true' 
             ? 
               <Link className='link_button' to='/'>На главную</Link>

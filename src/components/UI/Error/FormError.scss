@@ -1,0 +1,10 @@
+@import '../../../sass/vars.scss';
+
+.error_block {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 2px solid $errorColor;
+    color: $errorColor;
+    text-align: center;
+}

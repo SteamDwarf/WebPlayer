@@ -6,10 +6,13 @@ import { ISignUpData } from '../types/interfaces'
 import './styles/SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import { useActions } from '../hooks/useActions'
+import FormError from './UI/Error/FormError'
 
 const SignUp = () => {
     const [signUpData, setSignUpData] = useState<ISignUpData>({userName: '', email: '', password: ''}); 
-    const {signUpUser} = useActions();
+    const [repeatedPassword, setRepeatedPassword] = useState<string>('');
+    const [formError, setFormError] = useState<string>('');
+    const {signUpUser, fetchUsers} = useActions();
     const navigate = useNavigate();
 
     const setUsername = (newUserName: string) => {
@@ -24,10 +27,18 @@ const SignUp = () => {
 
     const registerNewUser = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
+
+        if(signUpData.password !== repeatedPassword) {
+            setFormError('Пароли не совпадают');
+            return;
+        }
+
         signUpUser(signUpData);
         localStorage.setItem('isAuth', 'true');
         navigate('/');
     }
+
+//TODO проверку на логин можно сделать через url параметры http://localhost:3004/users?userName=awdad
 
     return (
         <div className='signup_block'>
@@ -47,10 +58,24 @@ const SignUp = () => {
                 <LabeledInput 
                     label='Пароль'
                     placeholder='Введите пароль'
-                    inputType='password'
                     value={signUpData.password}
                     onChange={setPassword}
+                    optional={{inputType: 'password'}}
                 />
+                <LabeledInput 
+                    label='Повторите пароль'
+                    placeholder='Повторно введите пароль'
+                    value={repeatedPassword}
+                    onChange={setRepeatedPassword}
+                    optional={{inputType: 'password'}}
+                />
+                    {
+                        formError.length > 0
+                        ?
+                            <FormError error={formError}/>
+                        :
+                            null    
+                    }
                 <Button onClick={registerNewUser}>Зарегистрироваться</Button>
             </Form>
         </div>

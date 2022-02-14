@@ -25,6 +25,10 @@ export const userReducer = (state = initState, action: IUserActions): IUserState
             return {...state, error: action.payload}
         case UserActionTypes.LOG_OUT:
             return {...state, username: '', isAuth: ''}
+        case UserActionTypes.FETCH_USERS_SUCCESS:
+            return {...state}
+        case UserActionTypes.FETCH_USERS_ERROR:
+            return {...state, error: action.payload}
         default:
             return state;
     }

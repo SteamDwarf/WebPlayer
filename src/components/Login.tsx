@@ -38,9 +38,9 @@ const Login = () => {
             <LabeledInput 
               label='Пароль' 
               placeholder='Введите ваш пароль' 
-              inputType='password'
               value={signInData.password}
               onChange={setPassword}
+              optional={{inputType: 'password'}}
             />
             <Button onClick={signIn}>Войти</Button>
           </Form>
