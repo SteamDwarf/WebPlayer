@@ -4,24 +4,24 @@ import Form from './UI/Form/Form'
 import './styles/Login.scss';
 import LabeledInput from './UI/Input/LabeledInput';
 import Button from './UI/Button/Button';
+import { ISignInData } from '../types/interfaces';
+import { useActions } from '../hooks/useActions';
 
-interface ILoginData {
-  login: string,
-  password: string
-}
 
 const Login = () => {
-  const [loginData, setLoginData] = useState<ILoginData>({login: '', password: ''});
+  const [signInData, setLoginData] = useState<ISignInData>({userName: '', password: ''});
+  const {signInUserAction} = useActions();
 
   const setLogin = (newLogin: string) => {
-    setLoginData({...loginData, login: newLogin});
+    setLoginData({...signInData, userName: newLogin});
   }
   const setPassword = (newPassword: string) => {
-    setLoginData({...loginData, password: newPassword})
+    setLoginData({...signInData, password: newPassword})
   }
   const signIn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(loginData);
+    signInUserAction(signInData);
+    localStorage.setItem('isAuth', 'true');
   }
 
 
@@ -32,14 +32,14 @@ const Login = () => {
             <LabeledInput 
               label='Логин' 
               placeholder='Введите ваш логин' 
-              value={loginData.login}
+              value={signInData.userName}
               onChange={setLogin}
             />
             <LabeledInput 
               label='Пароль' 
               placeholder='Введите ваш пароль' 
               inputType='password'
-              value={loginData.password}
+              value={signInData.password}
               onChange={setPassword}
             />
             <Button onClick={signIn}>Войти</Button>

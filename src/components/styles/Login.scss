@@ -1,6 +1,5 @@
+@import '../../sass/_mixins.scss';
+
 .login_block {
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include form
 }

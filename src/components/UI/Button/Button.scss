@@ -2,17 +2,16 @@
 @import '../../../sass/mixins.scss';
 
 .button {
-    width: 100px;
+    min-width: 100px;
     height: 50px;
+    padding: 5px;
     color: $green;
     background-color: $itemsColor;
-    /* border: 1px solid #42C84D; */
     border: none;
     border-radius: 5px;
     outline: none;
     cursor: pointer;
     transition: 0.3s;
-
     &:hover {
         @include hoverButton;
     }

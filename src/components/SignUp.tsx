@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import Button from './UI/Button/Button'
 import Form from './UI/Form/Form'
 import LabeledInput from './UI/Input/LabeledInput'
-
-interface ISignUpData {
-    userName: string,
-    email: string,
-    password: string
-}
+import { ISignUpData } from '../types/interfaces'
+import './styles/SignUp.scss';
+import { useNavigate } from 'react-router-dom';
+import { useActions } from '../hooks/useActions'
 
 const SignUp = () => {
     const [signUpData, setSignUpData] = useState<ISignUpData>({userName: '', email: '', password: ''}); 
+    const {signUpUser} = useActions();
+    const navigate = useNavigate();
 
     const setUsername = (newUserName: string) => {
         setSignUpData({...signUpData, userName: newUserName});
@@ -22,8 +22,15 @@ const SignUp = () => {
         setSignUpData({...signUpData, password: newPassword});
     }
 
+    const registerNewUser = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        signUpUser(signUpData);
+        localStorage.setItem('isAuth', 'true');
+        navigate('/');
+    }
+
     return (
-        <div>
+        <div className='signup_block'>
             <Form title='Регистрация'>
                 <LabeledInput 
                     label='Имя пользователя'
@@ -40,10 +47,11 @@ const SignUp = () => {
                 <LabeledInput 
                     label='Пароль'
                     placeholder='Введите пароль'
+                    inputType='password'
                     value={signUpData.password}
                     onChange={setPassword}
                 />
-                <Button onClick={() => console.log('reg')}>Зарегистрироваться</Button>
+                <Button onClick={registerNewUser}>Зарегистрироваться</Button>
             </Form>
         </div>
     )

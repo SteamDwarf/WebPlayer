@@ -1,5 +1,15 @@
 export interface IUserState {
     id: number,
     username: string,
-    isAuth: string | null
+    isAuth: string | null,
+    error: string | null
 }
+export interface ISignUpData {
+    userName: string,
+    email: string,
+    password: string
+}
+export interface ISignInData {
+    userName: string,
+    password: string
+  }
