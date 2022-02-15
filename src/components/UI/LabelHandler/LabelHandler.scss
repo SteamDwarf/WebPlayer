@@ -1,0 +1,10 @@
+@import '../../../sass/vars.scss';
+
+.block {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: $textColor;
+}

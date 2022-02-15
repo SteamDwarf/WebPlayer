@@ -1,10 +1,6 @@
 import { UserActionTypes } from "./enums";
 import { ISignInData, ISignUpData } from "./interfaces";
 
-interface ISetUsername {
-    type: UserActionTypes.SET_USERNAME,
-    payload: string
-}
 interface ISetAuthState {
     type: UserActionTypes.SET_AUTH_STATE,
     payload: string | null
@@ -26,16 +22,15 @@ interface ILogOut {
     type: UserActionTypes.LOG_OUT
 }
 interface IFetchUsersSuccess {
-    type: UserActionTypes.FETCH_USERS_SUCCESS,
+    type: UserActionTypes.FETCH_USER_SUCCESS,
     payload: ISignUpData[]
 }
 interface IFetchUsersError {
-    type: UserActionTypes.FETCH_USERS_ERROR,
+    type: UserActionTypes.FETCH_USER_ERROR,
     payload: string
 }
 
-export type IUserActions = ISetUsername | 
-                            ISetAuthState | 
+export type IUserActions = ISetAuthState | 
                             ISignInUser | 
                             ISignUpSuccess |
                             ISignUpError |

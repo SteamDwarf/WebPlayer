@@ -20,7 +20,6 @@ function App() {
   const setAuthState = () => {
     let isAuth = localStorage.getItem('isAuth');
     dispatch(setAuthStateAction(isAuth));
-
   };
 
   return (

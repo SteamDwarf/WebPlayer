@@ -34,13 +34,14 @@ const Login = () => {
               placeholder='Введите ваш логин' 
               value={signInData.userName}
               onChange={setLogin}
+              optional={{inputType: 'userName', onBlur: () => console.log()}}
             />
             <LabeledInput 
               label='Пароль' 
               placeholder='Введите ваш пароль' 
               value={signInData.password}
               onChange={setPassword}
-              optional={{inputType: 'password'}}
+              optional={{inputType: 'password', onBlur: () => console.log()}}
             />
             <Button onClick={signIn}>Войти</Button>
           </Form>

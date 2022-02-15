@@ -8,13 +8,12 @@ const initState: IUserState = {
     id: 0,
     username: '',
     isAuth: 'false',
-    error: null
+    error: null,
+    repeatedUser: []
 }
 
 export const userReducer = (state = initState, action: IUserActions): IUserState  => {
     switch (action.type) {
-        case UserActionTypes.SET_USERNAME:
-            return {...state, username: action.payload}
         case UserActionTypes.SET_AUTH_STATE:
             return {...state, isAuth: action.payload}
         case UserActionTypes.SIGN_IN_USER:
@@ -25,9 +24,9 @@ export const userReducer = (state = initState, action: IUserActions): IUserState
             return {...state, error: action.payload}
         case UserActionTypes.LOG_OUT:
             return {...state, username: '', isAuth: ''}
-        case UserActionTypes.FETCH_USERS_SUCCESS:
-            return {...state}
-        case UserActionTypes.FETCH_USERS_ERROR:
+        case UserActionTypes.FETCH_USER_SUCCESS:
+            return {...state, repeatedUser: action.payload}
+        case UserActionTypes.FETCH_USER_ERROR:
             return {...state, error: action.payload}
         default:
             return state;

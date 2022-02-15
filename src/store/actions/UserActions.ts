@@ -4,10 +4,6 @@ import { UserActionTypes } from "../../types/enums";
 import { ISignInData, ISignUpData } from "../../types/interfaces";
 import { IUserActions } from "../../types/userActions";
 
-export const setUsernameAction = (username: string): IUserActions => ({
-    type: UserActionTypes.SET_USERNAME,
-    payload: username
-});
 export const setAuthStateAction = (state: string | null): IUserActions => ({
     type: UserActionTypes.SET_AUTH_STATE,
     payload: state
@@ -46,20 +42,20 @@ export const logOutUser = (): IUserActions => ({
     type: UserActionTypes.LOG_OUT
 });
 
-const fetchUsersSuccessAction = (users: ISignUpData[]) : IUserActions => ({
-    type: UserActionTypes.FETCH_USERS_SUCCESS,
+const fetchUserSuccessAction = (users: any[] | []) : IUserActions => ({
+    type: UserActionTypes.FETCH_USER_SUCCESS,
     payload: users
 });
-const fetchUsersErrorAction = (error: string): IUserActions => ({
-    type: UserActionTypes.FETCH_USERS_ERROR,
+const fetchUserErrorAction = (error: string): IUserActions => ({
+    type: UserActionTypes.FETCH_USER_ERROR,
     payload: error
 });
 
-export const fetchUsers = () => {
+export const findUser = (parameter: string, value: string) => {
     return (dispatch: Dispatch<IUserActions>) => {
-        fetch('http://localhost:3004/users')
-            .then(response => response.ok ? response.json : Promise.reject(response))
-            .then(json => console.log(json.name) /* dispatch(fetchUsersSuccessAction(json)) */)
-            .catch(e => dispatch(fetchUsersErrorAction(e.statusText)));
+        fetch(`http://localhost:3004/users?${parameter}=${value}`)
+            .then(response => response.ok ? response.json() : Promise.reject(response))
+            .then(json => dispatch(fetchUserSuccessAction(json)))
+            .catch(e => dispatch(fetchUserErrorAction(e.statusText)));
     }
 }
